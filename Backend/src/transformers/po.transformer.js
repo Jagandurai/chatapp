@@ -150,6 +150,33 @@ export const poTransformer = {
 
         return { count: uniqueItems.size };
       }
+<<<<<<< HEAD
+            
+      case "SHOW_PO_MEASURES": {
+        const fields = Array.isArray(filters?.fields) ? filters.fields : null;
+        const want = (k) => !fields || fields.includes(k);
+
+        // ✅ item filter (e.g. "00005")
+        const poItem = filters?.poItem ? String(filters.poItem).trim() : null;
+
+        // ✅ Keep leading zeros and ignore whitespace
+        const norm = (v) => String(v ?? "").trim();
+
+        let items = details.items || [];
+
+        // ✅ Filter to only the requested PO item
+        if (poItem) {
+          items = items.filter((x) => norm(x?.item?.po_item) === poItem);
+        }
+
+        // ✅ If item requested but not found
+        if (poItem && items.length === 0) {
+          return { error: `PO item ${poItem} not found in PO ${id}` };
+        }
+
+        return {
+          measures: items.map((x) => {
+=======
 
      case "SHOW_PO_MEASURES": {
         const fields = Array.isArray(filters?.fields) ? filters.fields : null;
@@ -157,6 +184,7 @@ export const poTransformer = {
 
         return {
           measures: details.items.map((x) => {
+>>>>>>> origin/dev
             const out = {
               po_item: x?.item?.po_item,
               material: x?.item?.material,
