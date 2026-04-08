@@ -342,6 +342,8 @@ abortRef.current = null;
 }
 }
 
+<<<<<<< HEAD
+=======
 useEffect(() => {
 const handler = (e) => {
 onSend({ overrideText: e.detail });
@@ -353,6 +355,7 @@ return () => {
 window.removeEventListener("sendMessage", handler);
 };
 }, []);
+>>>>>>> origin/dev
 
 function onStop() {
 if (abortRef.current) abortRef.current.abort();
@@ -759,7 +762,14 @@ className={classNames(
               <MessageBubble
                 role={m.role}
                 text={m.text}
+<<<<<<< HEAD
+                suggestions={m.suggestions}
+                onSuggestionClick={(text) => {
+                  onSend({ overrideText: text });
+                }}
+=======
                 suggestions={m.suggestions}   // ✅ ADD THIS
+>>>>>>> origin/dev
               />
               <button
                 type="button"
